@@ -1,0 +1,19 @@
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+@mixin mQW($arg) {
+  @media screen and (max-width: $arg) {
+    @content;
+  }
+}
+
+@mixin mQH($arg) {
+  @media screen and (max-height: $arg) {
+    @content;
+  }
+}
