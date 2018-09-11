@@ -75,6 +75,37 @@ $(function() {
   // >>>>>>>>>>========== CONTROLLERS ==============<<<<<<<<<<<
 
   // >>>>>>>>>>======== MAIN CONTROLLER ============<<<<<<<<<<<
+  // for swipes on mobiles
+
+  document.addEventListener('touchstart', handleTouchStart, false);        
+	document.addEventListener('touchmove', handleTouchMove, false);
+
+	var xDown = null;                                                        
+
+	function handleTouchStart(evt) {                                         
+	    xDown = evt.touches[0].clientX;                                      
+	};                                                
+
+	function handleTouchMove(evt) {
+	    if ( ! xDown ) {
+	        return;
+	    }
+
+	    var xUp = evt.touches[0].clientX;                                    
+	    var xDiff = xDown - xUp;
+
+        if ( xDiff > 0 ) {
+            /* left swipe */ 
+            tlevent.play();
+        } else {
+            /* right swipe */
+            tlevent.reverse();
+        }                       
+	    /* reset values */
+	    xDown = null;
+	};
+
+  // for scroll up and down on desktops
   var mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel" //FF doesn't recognize mousewheel as of FF3.x
 
   $('body').bind(mousewheelevt, function(e){
@@ -115,7 +146,7 @@ $(function() {
     $('.tagbtn').removeClass('activetag');
   }
 
-  // >>>>>>>>>>======== MAIN CONTROLLER ============<<<<<<<<<<<
+  // >>>>>>>>>>======== MOUSEWHEEL ANIMATION CONTROLLER ============<<<<<<<<<<<
 
   var mousewheel = $('#mousewheel')
 		mouse = $('#mouse'),
