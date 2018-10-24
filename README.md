@@ -1,2 +1,2 @@
 # Techvaganza
-#### NIT Srinagar official techfest's event page
+#### NIT Srinagar unofficial techfest's event page
